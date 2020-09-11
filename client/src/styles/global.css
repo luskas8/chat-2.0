@@ -1,0 +1,42 @@
+:root {
+    --color-background: #F0F0F7;
+    --color-primary-lighter: #8482FD;
+    --color-primary: #7270FF;
+    --color-primary-dark: #4945FF;
+    --color-base-secondary: #5C5757;
+    --color-green: #04D361;
+    --color-green-dark: #1caf5e;
+    --shapes-01: #FFFFF;
+    --fill: #ffffff;
+    --color-input-text: #757575;
+    --color-input-background: #E9E8E8;
+    --color-border: #C7C3C3;
+    --color-chat-background: #cd606052;
+  
+    font-size: 60%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+  
+html, body, #root {
+    height: 100vh;
+}
+  
+body {
+    background: var(--color-background);
+}
+  
+/* #root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} */
+  
+body, input, button, textarea {
+    font: 500 1.6rem Poppins, Roboto 'San-Serif';
+    color: var(--color-text-base);
+}

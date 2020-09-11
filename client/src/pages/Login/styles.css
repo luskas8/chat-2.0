@@ -1,0 +1,120 @@
+.container {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 43% 57%;
+}
+
+.container .marca{
+    height: 100%;
+    background-color: var(--color-primary);
+}
+
+.container .content {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 2fr 3fr 1fr;
+    justify-content: center;
+}
+
+.container .content .welcome {
+    margin-top: 150px;
+}
+
+.container .content .welcome h1{
+    font: 700 6.4rem Archivo, sans-serif;
+    color: var(--color-primary-dark);
+    letter-spacing: .3rem;
+}
+
+.container .content .welcome h3 {
+    font: 400 3.4rem Archivo, sans-serif;
+    max-width: 380px;
+    color: var(--color-base-secondary);
+    margin-left: 3.6rem;
+}
+
+.container .content form .login {
+    max-width: 300px;
+    margin-top: 50px;
+    margin-left: 3.6rem;
+}
+
+.container .content .login h1{
+    font: 700 3.6rem Roboto, sans-serif;
+    color: var(--shape-01);
+    margin-bottom: 25px;
+}
+
+.container .content .login .input-block{
+    position: relative;
+}
+.container .content .login .input-block + .input-block{
+    margin-top: 25px;
+}
+
+.container .content .login .input-block input {
+    width: 300px;
+    height: 60px;
+    padding-left: 15px;
+    border-radius: 6px;
+    border: 1px solid var(--color-border);
+    background: var(--color-input-background);
+    font: 400 1.8rem Roboto, sans-serif;
+}
+
+.container .content .login .input-block:focus-within::after {
+    width: 3px;
+    height: 40px;
+    content: '';
+    background: var(--color-primary-lighter);
+    position: absolute;
+    left: 0;
+    top: 10px;
+}
+
+.container .content .login .span{
+    width: 100%;
+    margin-top: 15px;
+    font: 400 1.4rem Roboto, sans-serif;
+}
+
+.container .content .login button {
+    width: 300px;
+    height: 56px;
+    margin-top: 50px;
+    font: 500 2.4rem Archivo, sans-serif;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    color: var(--fill);
+    letter-spacing: .2rem;
+    background: var(--color-green);
+    transition: background-color .2s;
+    cursor: pointer;
+}
+
+.container .content .login button:hover {
+    background: var(--color-green-dark);
+}
+
+.container .content .messages {
+    width: 300px;
+    margin-left: 3.6rem;
+    display: flex;
+    justify-content: space-between;
+    font: 400 1.4rem Poppins, sans-serif;
+}
+
+.container .content .messages .cadastro a{
+    color: var(--color-base-secondary);
+    text-decoration-line: underline;
+    cursor: pointer;
+}
+
+.container .content .messages .message {
+    display: flex;
+}
+
+.container .content .messages .message p {
+    margin-right: 5px;
+}

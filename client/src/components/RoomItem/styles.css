@@ -1,0 +1,67 @@
+.room {
+    width: calc(100% - 5px);
+    display: flex;
+    background: var(--color-input-background);
+    border: 1px solid var(--color-border);
+}
+
+.room + .room {
+    margin: 15px 0;
+}
+
+.room .logo {
+    background: var(--color-primary-dark);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 8px;
+    padding: 2px 8px;
+}
+
+.room .logo span {
+    font: 700 3.4rem Archivo, sans-serif;
+    color: var(--color-input-background);
+}
+
+.room .room-info {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.room .room-info span {
+    font: 500 1.8rem Poppins, sans-serif;
+    display: flex;
+    align-items: center;
+    margin-left: 25px;
+    position: relative;
+}
+
+.room .room-info span::before {
+    width: 1px;
+    height: 45px;
+    content: '';
+    background: var(--color-base-secondary);
+    position: absolute;
+    left: -15px;
+    top: 5px;
+}
+
+.room .room-info button {
+    width: 120px;
+    height: 42px;
+    margin-top: 6.5px;
+    font: 500 1.8rem Archivo, sans-serif;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    color: var(--fill);
+    letter-spacing: .2rem;
+    background: var(--color-green);
+    transition: background-color .2s;
+    cursor: pointer;
+}
+
+.room .room-info button:hover {
+    background: var(--color-green-dark);
+}
