@@ -2,7 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Chat 2.0
 
-A char project, using ReactJS with TypeScript, HTML, CSS and functions over web sockets using SocketIO.
+A chat project, using ReactJS with TypeScript, HTML, CSS and functions over web sockets using SocketIO.
 
 ## Commands
 
