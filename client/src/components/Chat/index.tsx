@@ -1,71 +1,84 @@
 import React, { useState, FormEvent } from 'react';
-// import io from 'socket.io-client';
+import api from '../../services/api';
+import socket from '../../services/socket';
 
 import MessageItem from '../MessageItem';
 
 import './styles.css';
 
-// const socket = io('http://localhost:3333');
-// socket.on('connect', () => console.log("[IO] Connect => New connection has been start."));
-
 interface ChatProps {
     roomName: string;
 }
 
-const Chat: React.FC<ChatProps> = (props) => {
+const Chat: React.FC<ChatProps> = ({ roomName }) => {
+    const id = localStorage.getItem('user_id');
+
     const [message, setMessage] = useState('');
     const [messages, setMessagens] = useState([
-        { id: '', message_id: '', message: ''}
+        { id: '', message_id: '', message: '', room: ''}
     ]);
 
     interface NewMessage {
         id: string;
         message_id: string;
         message: string;
+        room: string;
     }
 
     const handleNemMessage = (newMessage: NewMessage) => {
         setMessagens([...messages, newMessage]);
     }
 
-    // socket.on('chat.message.sent', handleNemMessage);
+    socket.on(`chat.send.${roomName}`, (data: NewMessage) => {
+        if (data.id !== id) {
+            console.log("Chegou");
+            handleNemMessage(data);
+        }
+    });
 
-    function handleSubmit(e: FormEvent) {
+    socket.on(`chat.newConnection.${roomName}`, (data: NewMessage) => {
+        // console.table(data);
+        handleNemMessage(data);
+    });
+
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
 
         if(message.trim()) {
-            // socket.emit('chat.message', {
-            //     id: myId,
-            //     message
-            // })
-            // Return the input to empty for new messages
+            const messagePromise = await api.post('message');
+            const message_id = messagePromise.data.id;
+            if (id) {
+                const newMessage = { id, message_id, message , room: roomName}
+                handleNemMessage(newMessage);
+                socket.emit('chat.message', newMessage);
+            }
+
+
+            // Return the message input to empty for new messages
             setMessage('');
         }
     }
     return (
         <div className="chat-content">
             <div className="user-info">
-                <span>{props.roomName}</span>
+                <span>{roomName}</span>
             </div>
 
             <div className="chat-box">
                 <ul className="messages-list">
-                    <MessageItem author="mine" value="Oi" key={0}/>
-                    <MessageItem author="other" value="Olá" key={1}/>
-                    <MessageItem author="mine" value="Xesque" key={2}/>
-                    {/* {
+                    {
                         messages.map(message => {
-                            if (message.message_id) {
+                            if (message.message_id && message.room === roomName) {
                                 return <MessageItem
                                             key={message.message_id}
-                                            author={(message.id === myId) ? "mine" : "other"}
+                                            author={(message.id === '111') ? "system" : (message.id === id) ? "mine" : "other"}
                                             value={message.message}
                                         />
                             }
                             // eslint-disable-next-line
                             return;
                         })
-                    } */}
+                    }
                 </ul>
             </div>
 

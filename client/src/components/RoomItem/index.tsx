@@ -1,4 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react'
+import socket from '../../services/socket';
 
 import './styles.css';
 
@@ -8,6 +9,12 @@ interface Room{
 }
 
 const RoomItem: React.FC<Room> = ({ roomName, click }) => {
+    const username = localStorage.getItem('user_name');
+    const id = localStorage.getItem('user_id');
+    function handleClick() {
+        socket.emit('joinRoom', {id, username, room: roomName});
+        click(roomName);
+    }
     return (
         <div className="room">
             <div className="logo">
@@ -15,7 +22,7 @@ const RoomItem: React.FC<Room> = ({ roomName, click }) => {
             </div>
             <div className="room-info">
                 <span>{roomName}</span>
-                <button className="join" onClick={() => click(roomName)}>Juntar-se</button>
+                <button className="join" onClick={handleClick}>Juntar-se</button>
             </div>
         </div>
     )
